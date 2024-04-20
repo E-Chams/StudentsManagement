@@ -19,7 +19,16 @@ public class Professor {
     private String lname;
 
 
-    @OneToOne()
+    @OneToOne(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Course course;
+
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "id=" + id +
+                ", fname='" + fname+ '\'' +
+                ", lname='" + lname+ '\'' +
+                '}';
+    }
 
 }

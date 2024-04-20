@@ -1,7 +1,9 @@
 package ma.xproce.studentsmanaging.service;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import ma.xproce.studentsmanaging.dao.entities.Course;
 import ma.xproce.studentsmanaging.dao.entities.Professor;
+import ma.xproce.studentsmanaging.dao.entities.Student;
 import ma.xproce.studentsmanaging.dao.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,4 +42,12 @@ public class ProfessorManagerService implements ProfessorManager{
     public Page<Professor> getAllProfessors(int page, int taille) {
         return professorRepository.findAll(PageRequest.of(page, taille));
     }
+
+    @Override
+    public Professor updateProfessor(Professor professor) {
+        return professorRepository.save(professor);
+    }
+
+    @Override
+    public Professor getProfessorById(Integer id){return professorRepository.findById(id).orElse(null);}
 }

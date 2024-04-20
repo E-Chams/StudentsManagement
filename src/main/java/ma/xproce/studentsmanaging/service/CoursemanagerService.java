@@ -1,6 +1,7 @@
 package ma.xproce.studentsmanaging.service;
 
 import ma.xproce.studentsmanaging.dao.entities.Course;
+import ma.xproce.studentsmanaging.dao.entities.Student;
 import ma.xproce.studentsmanaging.dao.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,12 +20,15 @@ public class CoursemanagerService implements CourseManager {
 
     @Override
     public Course addCourse(Course course) {
-        if ( !courseRepository.existsById(course.getId())) {
-            return courseRepository.save(course);
-        } else {
-            System.out.println("the course already exist");
-            return null;
+        Course existingCourse = courseRepository.findByName(course.getName());
+        if (existingCourse != null) {
+            System.out.println("The course already exists");
+            return existingCourse;
         }
+        else {
+            return courseRepository.save(course);
+        }
+
     }
 
     @Override
@@ -65,4 +69,9 @@ public class CoursemanagerService implements CourseManager {
         }
         return courses;
     }
+    @Override
+    public Course getCourseByName(String name){return courseRepository.findByName(name);}
+
+    @Override
+    public Course updateCourse(Course course) {return courseRepository.save(course);}
 }
