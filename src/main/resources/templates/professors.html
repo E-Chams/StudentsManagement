@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of professors</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .col-md-10{
+            height: 100vh;
+        }
+
+        .list-inline {
+            display: inline;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .list-inline-item {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            padding: 8px;
+            background-color: #f0ece2;
+            color: #333;
+        }
+        .center-h2  {
+            display: flex;
+            justify-content: center;
+        }
+        .btn-group-vertical {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-group-vertical > * {
+            margin-top: 40px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 d-flex flex-column align-items-start" style="background-color: #680747">
+
+            <div class="btn-group-vertical">
+
+                <a href="/getProfessorsList" >
+                    <button type="button" class="btn btn-outline-light mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                        </svg>  Professors List
+                    </button>
+                </a>
+                <a href="/addProfessor" >
+                    <button type="button" class="btn btn-outline-light mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                        </svg>  Add a new professor
+                    </button>
+                </a>
+
+                <a href="/getStudentsList" >
+                    <button type="button" class="btn btn-outline-light mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                        </svg>  Students List
+                    </button>
+                </a>
+                <a href="/addStudent" >
+                    <button type="button" class="btn btn-outline-light mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                        </svg>  Add a new Student
+                    </button>
+                </a>
+
+                <a href="/getCoursesList" >
+                    <button type="button" class="btn btn-outline-light mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+                        </svg>  Courses List
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="center-h2">
+                <h2>Professors List</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr style="background-color: #333333; color: white">
+                    <th>Professor's first name</th>
+                    <th>Professor's last name</th>
+                    <th>Professor's Course name</th>
+
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="professor:${listProfessors}">
+                    <td th:text="${professor.fname}"></td>
+                    <td th:text="${professor.lname}"></td>
+                    <td th:text="${professor.getCourse().getName()}"></td>
+                    <td>
+                        <a >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
+                                 viewBox="0 0 16 16">
+                                <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                <path
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                            </svg>
+                        </a>
+                        <a >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green"
+                                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd"
+                                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>
+                        </a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="container">
+                <ul class="nav nav-pills">
+                    <li class="nav-item me-2" th:each="p, stat: ${pages}">
+                        <a style="margin-right: 5px" th:class=" ${stat.index} == ${currentPage} ? 'btn btn-info' : 'btn btn-outline-info' "
+                           th:text="${stat.index + 1}" th:href="@{/getProfessorsList(page=${stat.index})}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer fixed-bottom py-3 bg-light">
+    <div class="container text-center">
+        <span class="text-muted">Students Management By @ECHAMS </span><br>
+        <span class="text-muted">© <span id="year"></span> All rights reserved.</span>
+    </div>
+</footer>
+<script>
+    document.getElementById('year').innerText = new Date().getFullYear();
+</script>
+</body>
+
+</html>
