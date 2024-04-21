@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Student</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .list-inline {
+            display: inline;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+        .col-md-10{
+            height: 100vh;
+
+        }
+
+        .list-inline-item {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            padding: 8px;
+            background-color: #f0ece2;
+            color: #333;
+        }
+        .center-h2  {
+            display: flex;
+            justify-content: center;
+        }
+        .btn-group-vertical {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-group-vertical > * {
+            margin-top: 40px;
+
+        }
+
+    </style>
+</head>
+<body >
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-2 d-flex flex-column align-items justify-content-start" style="background-color: #680747">
+
+            <div class="btn-group-vertical">
+                <div>
+                    <a href="/getStudentsList" >
+                        <button type="button" class="btn btn-outline-light mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                            </svg>Students List
+                        </button>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="/addProfessor" >
+                        <button type="button" class="btn btn-outline-light mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                            </svg>Add a new professor
+                        </button>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="/getProfessorsList" >
+                        <button type="button" class="btn btn-outline-light mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                            </svg>Professors List
+                        </button>
+                    </a>
+                </div>
+                <hr style="border-top: 1px solid #fff; margin: 0 0 10px 0;">
+                <div>
+                    <a href="/getCoursesList" >
+                        <button type="button" class="btn btn-outline-light mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+                            </svg>List of Courses
+                        </button>
+                    </a>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <br>
+            <h2>Add New Course</h2>
+            <form action="/addCourse" method="POST">
+                <div class="form-group">
+                    <label >Course Name:</label>
+                    <input type="text" class="form-control"  name="courseName" required>
+                </div>
+                <div class="form-group">
+                    <label >Course Date:</label>
+                    <input type="text" class="form-control"  name="courseDate" required>
+                </div>
+                <div class="form-group">
+                    <label >Course Start hour:</label>
+                    <input type="text" class="form-control"  name="courseStart" required>
+                </div>
+                <div class="form-group">
+                    <label >Course End hour:</label>
+                    <input type="text" class="form-control"  name="courseEnd" required>
+                </div>
+                <div class="form-group">
+                    <label >Course's Professor first name:</label>
+                    <input type="text" class="form-control"  name="courseProfessorf" required>
+                </div>
+                <div class="form-group">
+                    <label >Course's Professor last name:</label>
+                    <input type="text" class="form-control"  name="courseProfessorl" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+</body>
+</html>

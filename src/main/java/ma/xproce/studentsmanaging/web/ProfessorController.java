@@ -87,7 +87,7 @@ public class ProfessorController {
     }
     @PostMapping("/updateProfessor")
     public String updateProfessor(@RequestParam(name = "professorId") Integer id,
-                                @RequestParam String fname, @RequestParam String lname ,
+                                  @RequestParam String fname, @RequestParam String lname ,
                                   @RequestParam(name = "courseId") Integer courseId,
                                   @RequestParam(name = "course") String course) {
         Professor professor = professorManager.getProfessorById(id);
