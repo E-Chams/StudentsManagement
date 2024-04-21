@@ -24,10 +24,10 @@ public class ClassSession {
     private double start;
     private double end;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     private Course course;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Student> students=new ArrayList<>();
 
 

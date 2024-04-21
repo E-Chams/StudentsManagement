@@ -4,6 +4,7 @@ import ma.xproce.studentsmanaging.dao.entities.ClassSession;
 import ma.xproce.studentsmanaging.dao.entities.Course;
 import ma.xproce.studentsmanaging.dao.entities.Professor;
 import ma.xproce.studentsmanaging.dao.entities.Student;
+import ma.xproce.studentsmanaging.service.ClassSessionManager;
 import ma.xproce.studentsmanaging.service.CourseManager;
 import ma.xproce.studentsmanaging.service.ProfessorManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class ProfessorController {
     private ProfessorManager professorManager;
     @Autowired
     private CourseManager courseManager;
+    @Autowired
+    private ClassSessionManager classSessionManager;
 
     @GetMapping("/getProfessorsList")
     public String getAllProfessors(Model model, @RequestParam(name = "page",defaultValue = "0") int page,
@@ -59,24 +62,34 @@ public class ProfessorController {
         course.setProfessor(professor);
         courseManager.addCourse(course);
 
+
         professor.setCourse(course);
         professorManager.updateProfessor(professor);
 
         return "redirect:/getProfessorsList";
     }
     @GetMapping("/deleteProfessor/{id}")
-    public String deleteProfessor(Model model , @PathVariable Integer id){
+    public String deleteProfessor(Model model, @PathVariable Integer id) {
 
-        Professor professor = professorManager.getProfessorById(id);
-        Course course = professor.getCourse();
-        professor.setCourse(null);
-        course.setProfessor(null);
-        courseManager.updateCourse(course);
-        professorManager.deleteProfessor(professor);
-        courseManager.deleteCourse(course);
+            Professor professor = professorManager.getProfessorById(id);
+            Course course = professor.getCourse();
+            course.setProfessor(null);
+            courseManager.updateCourse(course);
+            professor.setCourse(null);
+            professorManager.updateProfessor(professor);
 
-        return "redirect:/getProfessorsList";
+
+            courseManager.deleteCourse(course);
+            professorManager.deleteProfessor(professor);
+
+            return "redirect:/getProfessorsList";
+
+
     }
+
+
+
+
 
 
     @GetMapping("/updateProfessor/{id}")
