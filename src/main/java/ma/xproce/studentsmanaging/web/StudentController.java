@@ -9,6 +9,7 @@ import ma.xproce.studentsmanaging.service.CourseManager;
 import ma.xproce.studentsmanaging.service.StudentManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,16 +33,28 @@ public class StudentController {
     private ClassSessionRepository classSessionRepository;
 
     @GetMapping("/getStudentsList")
-    public String getAllStudents(Model model,@RequestParam(name = "page",defaultValue = "0") int page,
-                                 @RequestParam(name = "taille" ,defaultValue = "6") int taille) {
-        Page<Student> students = studentManager.getAllStudents(page,taille);
+    public String getAllStudents(Model model,
+                                 @RequestParam(name = "page", defaultValue = "0") int page,
+                                 @RequestParam(name = "taille", defaultValue = "6") int taille,
+                                 @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+
+        Page<Student> students;
+
+        if (!keyword.isEmpty()) {
+            students = studentManager.searchStudent(keyword,page,taille);
+        } else {
+            students = studentManager.getAllStudents(page, taille);
+        }
+
         model.addAttribute("listStudent", students.getContent());
         int[] pages = new int[students.getTotalPages()];
-        model.addAttribute("pages" , pages);
+        model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);
+        model.addAttribute("keyword", keyword);
 
         return "listStudents";
     }
+
 
 
 

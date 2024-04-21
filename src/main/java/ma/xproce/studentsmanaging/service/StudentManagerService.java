@@ -9,6 +9,7 @@ import ma.xproce.studentsmanaging.dao.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -52,7 +53,9 @@ public class StudentManagerService implements StudentManager{
 
     @Override
     public Page<Student> getAllStudents(int page , int taille) {
-        return studentRepository.findAll(PageRequest.of(page,taille));
+
+        PageRequest pageable = PageRequest.of(page, taille);
+        return studentRepository.findAll(pageable);
     }
 
     @Override
@@ -84,4 +87,12 @@ public class StudentManagerService implements StudentManager{
         }
         return courses;
     }
+    @Override
+    public Page<Student> searchStudent(String keyword, int page , int taille) {
+
+        PageRequest pageable = PageRequest.of(page, taille);
+        return studentRepository.findByFnameContaining(keyword,pageable);
+    }
+
+
 }
