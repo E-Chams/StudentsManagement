@@ -68,7 +68,7 @@ public class CourseControler {
         return "addCourse";
     }
     @PostMapping("/addCourse")
-    public String addProfessor(@RequestParam("courseName") String courseName,
+    public String addCourse(@RequestParam("courseName") String courseName,
                                @RequestParam("courseStart") double start,
                                @RequestParam("courseEnd") double End,
                                @RequestParam("courseDate") LocalDate date,
@@ -84,6 +84,8 @@ public class CourseControler {
         professorManager.addProfessor(professor1);
         course.setProfessor(professor1);
         courseManager.updateCourse(course);
+        professor1.setCourse(course);
+        professorManager.updateProfessor(professor1);
         ClassSession classSession = new ClassSession();
         classSession.setCourse(course);
         classSession.setStart(start);

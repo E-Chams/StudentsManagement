@@ -48,4 +48,5 @@ public class ClassSessionManagerService implements ClassSessionManager{
     public List<ClassSession> getClassSessionsByCourseId(Integer courseId) {
         return classSessionRepository.findByCourseId(courseId);
     }
+
 }

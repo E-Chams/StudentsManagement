@@ -66,6 +66,11 @@ public class ProfessorController {
         professor.setCourse(course);
         professorManager.updateProfessor(professor);
 
+        ClassSession classSession = new ClassSession();
+        classSession.setCourse(course);
+        classSessionManager.addClassSession(classSession);
+
+
         return "redirect:/getProfessorsList";
     }
     @GetMapping("/deleteProfessor/{id}")
