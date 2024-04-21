@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class CoursemanagerService implements CourseManager {
             return existingCourse;
         }
         else {
+            course.setCreatedAt(new Date());
             return courseRepository.save(course);
         }
 
@@ -73,5 +75,14 @@ public class CoursemanagerService implements CourseManager {
     public Course getCourseByName(String name){return courseRepository.findByName(name);}
 
     @Override
-    public Course updateCourse(Course course) {return courseRepository.save(course);}
+    public Course updateCourse(Course course) {
+        if (courseRepository.existsById(course.getId())) {
+            course.setUpdatedAt(new Date());
+            return courseRepository.save(course);
+        } else {
+            System.out.println("The course doesnt exist");
+            return null;
+        }
+    }
+
 }

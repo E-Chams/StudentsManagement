@@ -13,4 +13,8 @@ public interface ClassSessionManager {
     List<ClassSession> getAllClassSessions();
     public  ClassSession getClassSessionById(Integer id);
     public  ClassSession updateClassSession(ClassSession classSession);
+
+    public List<ClassSession> getClassSessionsByCourseId(Integer courseId);
+
+
 }

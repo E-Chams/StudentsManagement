@@ -18,16 +18,16 @@ import java.util.List;
 @NoArgsConstructor
 public class ClassSession {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int id;
     private LocalDate date;
     private double start;
     private double end;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Course course;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Student> students=new ArrayList<>();
 
 

@@ -100,19 +100,30 @@ public class CourseControler {
         Course course = courseManager.getCourseById(id);
         Professor professor = course.getProfessor();
 
+        // Remove the association between the professor and the course
         professor.setCourse(null);
         course.setProfessor(null);
+
+        // Update the course and professor in the database
         courseManager.updateCourse(course);
+        professorManager.updateProfessor(professor);
+
+        // Get class sessions associated with the course
+        List<ClassSession> classSessions = classSessionManager.getClassSessionsByCourseId(course.getId());
+
+        // Remove associations and delete class sessions
+        for (ClassSession cs : classSessions) {
+            cs.setCourse(null); // Remove association with the course
+            classSessionManager.updateClassSession(cs); // Update class session in the database
+            classSessionManager.deleteClassSession(cs); // Delete the class session
+        }
+
+        // Delete the professor and the course
         professorManager.deleteProfessor(professor);
-        //courseManager.deleteCourse(course);
+        courseManager.deleteCourse(course);
 
-
-
-
-        //Integer csCourseID = course.getId();
-
+        // Redirect to the courses list page
         return "redirect:/getCoursesList";
     }
-
 
 }

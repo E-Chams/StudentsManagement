@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ClassSessionRepository extends JpaRepository<ClassSession, Integer> {
     List<ClassSession> findStudentById(Integer studentId);
+    List<ClassSession> findByCourseId(Integer courseId);
 
 }

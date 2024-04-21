@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,11 +19,13 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private Date createdAt;
+    private  Date updatedAt;
 
     @OneToOne
     private Professor professor;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course" , cascade = CascadeType.MERGE)
     private List<ClassSession> classSessions;
 
     @Override

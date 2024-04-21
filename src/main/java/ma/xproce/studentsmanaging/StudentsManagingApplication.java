@@ -57,197 +57,198 @@ public class StudentsManagingApplication {
     CommandLineRunner start(){
         return args -> {
 
-
+//
 //
 //            //Entering Data for students
 //            Student student1 = new Student();
 //            student1.setFname("Salma");
 //            student1.setLname("Echams");
-//            studentRepository.save(student1);
+//            studentManager.addStudent(student1);
 //
 //            Student student2 = new Student();
 //            student2.setFname("Ibtissam");
 //            student2.setLname("Daraaoui");
-//            studentRepository.save(student2);
+//            studentManager.addStudent(student2);
 //
 //            Student student3 = new Student();
 //            student3.setFname("Inass");
 //            student3.setLname("Mahloul");
-//            studentRepository.save(student3);
+//            studentManager.addStudent(student3);
 //
 //            Student student4 = new Student();
 //            student4.setFname("Haytam");
 //            student4.setLname("Maan");
-//            studentRepository.save(student4);
+//            studentManager.addStudent(student4);
 //
 //            Student student5 = new Student();
 //            student5.setFname("Wail");
 //            student5.setLname("Kodad");
-//            studentRepository.save(student5);
+//            studentManager.addStudent(student5);
 //
 //            Student student6 = new Student();
 //            student6.setFname("Mohammed");
 //            student6.setLname("Afkari");
-//            studentRepository.save(student6);
+//            studentManager.addStudent(student6);
 //
 //
 //            Student student7 = new Student();
 //            student7.setFname("Souhail");
 //            student7.setLname("Mokadem");
-//            studentRepository.save(student7);
+//            studentManager.addStudent(student7);
 //
 //            Student student8 = new Student();
 //            student8.setFname("kenza");
 //            student8.setLname("Riahi");
-//            studentRepository.save(student8);
+//            studentManager.addStudent(student8);
 //
 //            Student student9 = new Student();
 //            student9.setFname("Ismael");
 //            student9.setLname("Zahdani");
-//            studentRepository.save(student9);
+//            studentManager.addStudent(student9);
 //
 //            //Entering data for courses
 //            Course course1 = new Course();
 //            course1.setName("JAVA");
-//            courseRepository.save(course1);
+//            courseManager.addCourse(course1);
 //
 //            Course course2 = new Course();
 //            course2.setName("Python");
-//            courseRepository.save(course2);
+//            courseManager.addCourse(course2);
 //
 //            Course course3 = new Course();
 //            course3.setName("C++");
-//            courseRepository.save(course3);
+//            courseManager.addCourse(course3);
 //
 //            Course course4 = new Course();
 //            course4.setName("English");
-//            courseRepository.save(course4);
+//            courseManager.addCourse(course4);
 //
 //            Course course5 = new Course();
 //            course5.setName("French");
-//            courseRepository.save(course5);
+//            courseManager.addCourse(course5);
 //
 //            Course course6 = new Course();
 //            course6.setName("Arabic");
-//            courseRepository.save(course6);
+//            courseManager.addCourse(course6);
 //
 //            Course course7 = new Course();
 //            course7.setName("Big data");
-//            courseRepository.save(course7);
+//            courseManager.addCourse(course7);
 //
 //            Course course8 = new Course();
 //            course8.setName("Data warehouse");
-//            courseRepository.save(course8);
+//            courseManager.addCourse(course8);
 //
 //            //Entering Data for professors
 //            Professor professor1 = new Professor();
 //            professor1.setFname("Hajar");
 //            professor1.setLname("Boughrib");
 //            professor1.setCourse(course1);
-//            professorRepository.save(professor1);
+//            professorManager.addProfessor(professor1);
 //
 //            Professor professor2 = new Professor();
 //            professor2.setFname("Ahmed");
 //            professor2.setLname("Boudraa");
 //            professor2.setCourse(course2);
-//            professorRepository.save(professor2);
+//            professorManager.addProfessor(professor2);
 //
 //            Professor professor3 = new Professor();
 //            professor3.setFname("Fatima");
 //            professor3.setLname("Ait slimane");
 //            professor3.setCourse(course3);
-//            professorRepository.save(professor3);
+//            professorManager.addProfessor(professor3);
 //
 //            Professor professor4 = new Professor();
 //            professor4.setFname("Karim");
 //            professor4.setLname("Dahmani");
 //            professor4.setCourse(course4);
-//            professorRepository.save(professor4);
+//            professorManager.addProfessor(professor4);
 //
 //            Professor professor5 = new Professor();
 //            professor5.setFname("Mohammed");
 //            professor5.setLname("Talbi");
 //            professor5.setCourse(course5);
-//            professorRepository.save(professor5);
+//            professorManager.addProfessor(professor5);
 //
 //            Professor professor6 = new Professor();
 //            professor6.setFname("Hassan");
 //            professor6.setLname("Raqen");
 //            professor6.setCourse(course6);
-//            professorRepository.save(professor6);
+//            professorManager.addProfessor(professor6);
 //
 //            Professor professor7 = new Professor();
 //            professor7.setFname("Ibrahim");
 //            professor7.setLname("Nouri");
 //            professor7.setCourse(course7);
-//            professorRepository.save(professor7);
+//            professorManager.addProfessor(professor7);
 //
 //            Professor professor8 = new Professor();
 //            professor8.setFname("Fatima");
 //            professor8.setLname("Abrar");
 //            professor8.setCourse(course8);
-//            professorRepository.save(professor8);
+//            professorManager.addProfessor(professor8);
 //
 //
 //            //Course
 //            course1.setProfessor(professor1);
-//            courseRepository.save(course1);
+//            courseManager.updateCourse(course1);
 //
 //            course2.setProfessor(professor2);
-//            courseRepository.save(course2);
+//            courseManager.updateCourse(course2);
 //
 //            course3.setProfessor(professor3);
-//            courseRepository.save(course3);
+//            courseManager.updateCourse(course3);
 //
 //            course4.setProfessor(professor4);
-//            courseRepository.save(course4);
+//            courseManager.updateCourse(course4);
 //
 //            course5.setProfessor(professor5);
-//            courseRepository.save(course5);
+//            courseManager.updateCourse(course5);
 //
 //            course6.setProfessor(professor6);
-//            courseRepository.save(course6);
+//            courseManager.updateCourse(course6);
 //
 //            course7.setProfessor(professor7);
-//            courseRepository.save(course7);
+//            courseManager.updateCourse(course7);
 //
 //            course8.setProfessor(professor8);
-//            courseRepository.save(course8);
+//            courseManager.updateCourse(course8);
 //
 //
 //            //Entering data for Class sessions
 //            ClassSession classSession1 = new ClassSession();
 //            classSession1.setCourse(course1);
-//            classSessionRepository.save(classSession1);
+//            classSessionManager.addClassSession(classSession1);
+//
 //
 //            ClassSession classSession2 = new ClassSession();
 //            classSession2.setCourse(course2);
-//            classSessionRepository.save(classSession2);
+//            classSessionManager.addClassSession(classSession2);
 //
 //
 //            ClassSession classSession3 = new ClassSession();
 //            classSession3.setCourse(course3);
-//            classSessionRepository.save(classSession3);
+//            classSessionManager.addClassSession(classSession3);
 //
 //            ClassSession classSession4 = new ClassSession();
 //            classSession4.setCourse(course4);
-//            classSessionRepository.save(classSession4);
+//            classSessionManager.addClassSession(classSession4);
 //
 //            ClassSession classSession5 = new ClassSession();
 //            classSession5.setCourse(course5);
-//            classSessionRepository.save(classSession5);
+//            classSessionManager.addClassSession(classSession5);
 //
 //            ClassSession classSession6 = new ClassSession();
 //            classSession6.setCourse(course6);
-//            classSessionRepository.save(classSession6);
+//            classSessionManager.addClassSession(classSession6);
 //
 //            ClassSession classSession7 = new ClassSession();
 //            classSession7.setCourse(course7);
-//            classSessionRepository.save(classSession7);
+//            classSessionManager.addClassSession(classSession7);
 //
 //            ClassSession classSession8 = new ClassSession();
 //            classSession8.setCourse(course8);
-//            classSessionRepository.save(classSession8);
+//            classSessionManager.addClassSession(classSession8);
 //
 //
 //            //List of Students
@@ -276,31 +277,32 @@ public class StudentsManagingApplication {
 //
 //            //Completing data for Students
 //            student1.setClassSessions(classSessions);
-//            studentRepository.save(student1);
+//            studentManager.updateStudent(student1);
+//
 //
 //            student2.setClassSessions(classSessions);
-//            studentRepository.save(student2);
+//            studentManager.updateStudent(student2);
 //
 //            student3.setClassSessions(classSessions);
-//            studentRepository.save(student3);
+//            studentManager.updateStudent(student3);
 //
 //            student4.setClassSessions(classSessions);
-//            studentRepository.save(student4);
+//            studentManager.updateStudent(student4);
 //
 //            student5.setClassSessions(classSessions);
-//            studentRepository.save(student5);
+//            studentManager.updateStudent(student5);
 //
 //            student6.setClassSessions(classSessions);
-//            studentRepository.save(student6);
+//            studentManager.updateStudent(student6);
 //
 //            student7.setClassSessions(classSessions);
-//            studentRepository.save(student7);
+//            studentManager.updateStudent(student7);
 //
 //            student8.setClassSessions(classSessions);
-//            studentRepository.save(student8);
+//            studentManager.updateStudent(student8);
 //
 //            student9.setClassSessions(classSessions);
-//            studentRepository.save(student9);
+//            studentManager.updateStudent(student9);
 //
 //
 //
@@ -309,49 +311,49 @@ public class StudentsManagingApplication {
 //            classSession1.setDate(LocalDate.now());
 //            classSession1.setStart(8);
 //            classSession1.setEnd(9);
-//            classSessionRepository.save(classSession1);
+//            classSessionManager.updateClassSession(classSession1);
 //
 //            classSession2.setStudents(students);
 //            classSession2.setDate(LocalDate.now());
 //            classSession2.setStart(9);
 //            classSession2.setEnd(10);
-//            classSessionRepository.save(classSession2);
+//            classSessionManager.updateClassSession(classSession2);
 //
 //            classSession3.setStudents(students);
 //            classSession3.setDate(LocalDate.now());
 //            classSession3.setStart(10);
 //            classSession3.setEnd(11);
-//            classSessionRepository.save(classSession3);
+//            classSessionManager.updateClassSession(classSession3);
 //
 //            classSession4.setStudents(students);
 //            classSession4.setDate(LocalDate.now());
 //            classSession4.setStart(11);
 //            classSession4.setEnd(12);
-//            classSessionRepository.save(classSession4);
+//            classSessionManager.updateClassSession(classSession4);
 //
 //            classSession5.setStudents(students);
 //            classSession5.setDate(LocalDate.now());
 //            classSession5.setStart(2);
 //            classSession5.setEnd(3);
-//            classSessionRepository.save(classSession5);
+//            classSessionManager.updateClassSession(classSession5);
 //
 //            classSession6.setStudents(students);
 //            classSession6.setDate(LocalDate.now());
 //            classSession6.setStart(3);
 //            classSession6.setEnd(4);
-//            classSessionRepository.save(classSession6);
+//            classSessionManager.updateClassSession(classSession6);
 //
 //            classSession7.setStudents(students);
 //            classSession7.setDate(LocalDate.now());
 //            classSession7.setStart(4);
 //            classSession7.setEnd(5);
-//            classSessionRepository.save(classSession7);
+//            classSessionManager.updateClassSession(classSession7);
 //
 //            classSession8.setStudents(students);
 //            classSession8.setDate(LocalDate.now());
 //            classSession8.setStart(5);
 //            classSession8.setEnd(6);
-//            classSessionRepository.save(classSession8);
+//            classSessionManager.updateClassSession(classSession8);
 //
 //
 //
@@ -359,28 +361,29 @@ public class StudentsManagingApplication {
 //
 //            //Completing data for Courses
 //            course1.setClassSessions(classSessions);
-//            courseRepository.save(course1);
+//            courseManager.updateCourse(course1);
+//
 //
 //            course2.setClassSessions(classSessions);
-//            courseRepository.save(course2);
+//            courseManager.updateCourse(course2);
 //
 //            course3.setClassSessions(classSessions);
-//            courseRepository.save(course3);
+//            courseManager.updateCourse(course3);
 //
 //            course4.setClassSessions(classSessions);
-//            courseRepository.save(course4);
+//            courseManager.updateCourse(course4);
 //
 //            course5.setClassSessions(classSessions);
-//            courseRepository.save(course5);
+//            courseManager.updateCourse(course5);
 //
 //            course6.setClassSessions(classSessions);
-//            courseRepository.save(course6);
+//            courseManager.updateCourse(course6);
 //
 //            course7.setClassSessions(classSessions);
-//            courseRepository.save(course7);
+//            courseManager.updateCourse(course7);
 //
 //            course8.setClassSessions(classSessions);
-//            courseRepository.save(course8);
+//            courseManager.updateCourse(course8);
 
 /*
 

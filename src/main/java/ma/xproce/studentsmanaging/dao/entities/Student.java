@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,9 +21,11 @@ public class Student {
     private int id;
     private String fname;
     private String lname;
+    private Date createdAt;
+    private  Date updatedAt;
 
 
-    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER ,cascade = CascadeType.MERGE)
     private List<ClassSession> classSessions;
 
 

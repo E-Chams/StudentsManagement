@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 @Service
@@ -19,11 +20,14 @@ public class ProfessorManagerService implements ProfessorManager{
     private ProfessorRepository professorRepository;
     @Override
     public Professor addProfessor(Professor professor) {
-        if (!professorRepository.existsById(professor.getId())) {
-            return professorRepository.save(professor);
-        } else {
-            System.out.println("the creator already exist");
+        if (professorRepository.existsById(professor.getId()))
+        {
+            System.out.println("the professor already exist");
             return null;
+
+        } else {
+            professor.setCreatedAt(new Date());
+            return professorRepository.save(professor);
         }
     }
 
@@ -45,6 +49,7 @@ public class ProfessorManagerService implements ProfessorManager{
 
     @Override
     public Professor updateProfessor(Professor professor) {
+        professor.setUpdatedAt(new Date());
         return professorRepository.save(professor);
     }
 

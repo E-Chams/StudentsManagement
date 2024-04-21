@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,6 +25,7 @@ public class StudentManagerService implements StudentManager{
     @Override
     public Student addStudent(Student student) {
         if (!studentRepository.existsById(student.getId())) {
+            student.setCreatedAt(new Date());
             return studentRepository.save(student);
         } else {
             System.out.println("the Student already exist");
@@ -60,7 +62,15 @@ public class StudentManagerService implements StudentManager{
 
     @Override
     public Student updateStudent(Student student) {
-        return studentRepository.save(student);
+        if(studentRepository.existsById(student.getId())){
+            student.setUpdatedAt(new Date());
+            return studentRepository.save(student);
+        }
+        else {
+            System.out.println("The student doesnt exist");
+            return null;
+        }
+
     }
     @Override
     public List<Course> getCoursesForStudent(int studentId) {

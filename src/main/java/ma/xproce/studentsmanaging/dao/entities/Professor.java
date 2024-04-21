@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @Data
 @Table(name="Professors")
@@ -17,9 +19,11 @@ public class Professor {
     private int id;
     private String fname;
     private String lname;
+    private Date createdAt;
+    private  Date updatedAt;
 
 
-    @OneToOne(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "professor", cascade = CascadeType.MERGE, orphanRemoval = true)
     private Course course;
 
     @Override

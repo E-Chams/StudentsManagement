@@ -44,4 +44,8 @@ public class ClassSessionManagerService implements ClassSessionManager{
 
     @Override
     public  ClassSession updateClassSession(ClassSession classSession){ return classSessionRepository.save(classSession);}
+    @Override
+    public List<ClassSession> getClassSessionsByCourseId(Integer courseId) {
+        return classSessionRepository.findByCourseId(courseId);
+    }
 }
