@@ -30,12 +30,19 @@ public class ProfessorController {
 
     @GetMapping("/getProfessorsList")
     public String getAllProfessors(Model model, @RequestParam(name = "page",defaultValue = "0") int page,
-                                 @RequestParam(name = "taille" ,defaultValue = "4") int taille) {
-        Page<Professor> professors = professorManager.getAllProfessors(page,taille);
+                                 @RequestParam(name = "taille" ,defaultValue = "4") int taille,
+                                   @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+        Page<Professor> professors;
+        if (!keyword.isEmpty()) {
+            professors = professorManager.searchProfessor(keyword,page,taille);
+        } else {
+            professors = professorManager.getAllProfessors(page, taille);
+        }
         model.addAttribute("listProfessors", professors.getContent());
         int[] pages = new int[professors.getTotalPages()];
         model.addAttribute("pages" , pages);
         model.addAttribute("currentPage", page);
+        model.addAttribute("keyword", keyword);
 
         return "professors";
     }

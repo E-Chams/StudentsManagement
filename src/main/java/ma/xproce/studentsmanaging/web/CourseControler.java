@@ -28,12 +28,21 @@ public class CourseControler {
     private ProfessorManager professorManager;
     @GetMapping("/getCoursesList")
     public String getAllCourses(Model model, @RequestParam(name = "page",defaultValue = "0") int page,
-                                   @RequestParam(name = "taille" ,defaultValue = "5") int taille) {
-        Page<Course> courses = courseManager.getAllCourses(page,taille);
+                                   @RequestParam(name = "taille" ,defaultValue = "5") int taille,
+                                  @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+
+        Page<Course> courses;
+        if (!keyword.isEmpty()) {
+            courses = courseManager.searchCourse(keyword, page, taille);
+        } else {
+            courses = courseManager.getAllCourses(page, taille);
+        }
         model.addAttribute("listCourses", courses.getContent());
         int[] pages = new int[courses.getTotalPages()];
         model.addAttribute("pages" , pages);
         model.addAttribute("currentPage", page);
+        model.addAttribute("keyword", keyword);
+
 
         return "courses";
     }

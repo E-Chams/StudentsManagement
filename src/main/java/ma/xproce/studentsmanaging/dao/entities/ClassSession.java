@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "ClassSessions")
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class ClassSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )

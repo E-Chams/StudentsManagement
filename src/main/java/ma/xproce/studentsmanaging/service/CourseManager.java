@@ -1,6 +1,7 @@
 package ma.xproce.studentsmanaging.service;
 
 import ma.xproce.studentsmanaging.dao.entities.Course;
+import ma.xproce.studentsmanaging.dao.entities.Professor;
 import ma.xproce.studentsmanaging.dao.entities.Student;
 import org.springframework.data.domain.Page;
 
@@ -17,4 +18,5 @@ public interface CourseManager {
     public Course getCourseByName(String name);
     public List<Course> getCoursesByIds(List<Integer> courseIds);
     public Course updateCourse(Course course);
+    public Page<Course> searchCourse(String keyword, int page , int taille);
 }

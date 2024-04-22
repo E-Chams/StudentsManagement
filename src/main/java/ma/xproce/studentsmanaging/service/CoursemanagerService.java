@@ -1,6 +1,7 @@
 package ma.xproce.studentsmanaging.service;
 
 import ma.xproce.studentsmanaging.dao.entities.Course;
+import ma.xproce.studentsmanaging.dao.entities.Professor;
 import ma.xproce.studentsmanaging.dao.entities.Student;
 import ma.xproce.studentsmanaging.dao.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,14 @@ public class CoursemanagerService implements CourseManager {
             System.out.println("The course doesnt exist");
             return null;
         }
+    }
+
+    @Override
+    public Page<Course> searchCourse(String keyword, int page , int taille) {
+
+        PageRequest pageable = PageRequest.of(page, taille);
+        return  courseRepository.findByNameContaining(keyword,pageable);
+
     }
 
 }

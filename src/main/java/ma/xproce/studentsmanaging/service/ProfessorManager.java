@@ -16,4 +16,5 @@ public interface ProfessorManager {
     Page<Professor> getAllProfessors(int page, int taille);
     public Professor updateProfessor(Professor professor);
     public  Professor getProfessorById(Integer id);
+    public Page<Professor> searchProfessor(String keyword, int page , int taille);
 }

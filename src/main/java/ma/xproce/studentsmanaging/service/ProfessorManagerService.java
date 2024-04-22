@@ -55,4 +55,14 @@ public class ProfessorManagerService implements ProfessorManager{
 
     @Override
     public Professor getProfessorById(Integer id){return professorRepository.findById(id).orElse(null);}
+
+    @Override
+    public Page<Professor> searchProfessor(String keyword, int page , int taille) {
+
+        PageRequest pageable = PageRequest.of(page, taille);
+        return  professorRepository.findByLnameContaining(keyword,pageable);
+
+    }
+
+
 }
