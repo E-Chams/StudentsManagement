@@ -43,7 +43,6 @@ public class CourseControler {
         model.addAttribute("currentPage", page);
         model.addAttribute("keyword", keyword);
 
-
         return "courses";
     }
     @GetMapping("/updateCourse/{id}")
@@ -67,6 +66,7 @@ public class CourseControler {
             classSession.setStart(datestart);
             classSession.setEnd(dateend);
             classSession.setDate(date);
+
             classSessionManager.updateClassSession(classSession);
             courseManager.updateCourse(course);
         }

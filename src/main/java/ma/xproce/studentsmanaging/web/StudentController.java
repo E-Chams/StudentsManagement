@@ -138,13 +138,11 @@ public class StudentController {
         student.setLname(lastName);
 
         List<Course> selectedCourses = courseManager.getCoursesByIds(courseIds);
-        System.out.println(courseIds);
+        //System.out.println(courseIds);
 
         List<ClassSession> classSessions = new ArrayList<>();
 
         for (Course course : selectedCourses) {
-
-
             ClassSession classSession = classSessionManager.getClassSessionById(course.getId());
            // classSession.setCourse(course);
             classSession.getStudents().add(student);

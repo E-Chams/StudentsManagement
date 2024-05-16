@@ -10,7 +10,6 @@ import java.util.List;
 public interface StudentManager {
 
     public Student addStudent(Student student);
-
     public void deleteStudent(int id);
 
     public Page<Student> getAllStudents(int page , int taille);
