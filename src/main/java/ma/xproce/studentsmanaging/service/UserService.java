@@ -15,8 +15,8 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class UserService {
- @Autowired
- private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     //private static List<UserM> users = new ArrayList<>();
 
@@ -26,7 +26,7 @@ public class UserService {
     public void postConstruct() {
         if (userRepository.count() == 0) {  // Check if the admin user already exists
             UserM user = new UserM();
-            user.setRole(Role.Admin);
+            user.setRole(Role.ADMIN);
             user.setUsername("admin");
             user.setPassword(passwordEncoder.encode("abc"));
             userRepository.save(user);
@@ -34,14 +34,16 @@ public class UserService {
     }
 
     public void register(UserM user) {
-        user.setRole(Role.User);
+        user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     public UserM findByLogin(String login) {
-        return userRepository.findByUsername(login).orElse(null);
-
+        return userRepository.findByUsername(login).get();
+        /*return users.stream().filter(user -> user.getUsername().equals(login))
+                .findFirst()
+                .orElse(null);*/
     }
 
 

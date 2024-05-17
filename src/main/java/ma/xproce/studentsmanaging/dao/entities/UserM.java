@@ -17,7 +17,7 @@ public class UserM {
     @Column(unique = true)
     private  String username;
     private String password;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Role role;
 
 
