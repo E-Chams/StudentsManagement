@@ -68,37 +68,6 @@ public class StudentManagerService implements StudentManager{
         if(studentRepository.existsById(student.getId())){
             student.setUpdatedAt(new Date());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             return studentRepository.save(student);
         }
         else {
@@ -123,7 +92,7 @@ public class StudentManagerService implements StudentManager{
     public Page<Student> searchStudent(String keyword, int page , int taille) {
 
         PageRequest pageable = PageRequest.of(page, taille);
-        return studentRepository.findByFnameContaining(keyword,pageable);
+        return studentRepository.findByFnameContainingOrLnameContains(keyword,keyword,pageable);
     }
 
 

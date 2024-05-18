@@ -13,7 +13,7 @@
     <h2>Course Modification</h2>
     <br>
     <form action="/updateCourse" method="Post">
-
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="hidden" name="courseId" th:value="${course.getId()}">
 
         <div class="form-group">

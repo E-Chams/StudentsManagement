@@ -113,7 +113,7 @@
                     <th>Student first name</th>
                     <th>Student last name</th>
                     <th>Student Courses</th>
-                    <th>Action</th>
+                    <th th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -125,7 +125,7 @@
                             <li class="list-inline-item" th:text="${classSession.getCourse().getName()}"></li>
                         </ul>
                     </td>
-                    <td>
+                    <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}" >
                         <a th:href="@{'deleteStudent/'+${student.id}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash"
                                  viewBox="0 0 16 16">

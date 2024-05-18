@@ -101,6 +101,7 @@
             <br>
             <h2>Add New Professor</h2>
             <form action="/addProfessor" method="POST">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <div class="form-group">
                     <label >First Name:</label>
                     <input type="text" class="form-control"  name="fname" required>

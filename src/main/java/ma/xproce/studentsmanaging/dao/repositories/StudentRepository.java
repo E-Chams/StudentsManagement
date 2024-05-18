@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student,Integer> {
-    Page<Student> findByFnameContaining(String keyword, Pageable pageable);
+    Page<Student> findByFnameContainingOrLnameContains(String fname,String lname,Pageable pageable);
 }
