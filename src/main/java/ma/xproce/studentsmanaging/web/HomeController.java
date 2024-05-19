@@ -39,6 +39,7 @@ public class HomeController {
         model.addAttribute("studentsCount", studentManager.getStudentsCount());
         model.addAttribute("coursesCount",courseManager.getCoursesCount());
         model.addAttribute("user",userManager.getAllUsers());
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         UserM user = userManager.findByLogin(username);
@@ -47,37 +48,9 @@ public class HomeController {
 
         model.addAttribute("username", username);
         model.addAttribute("userImg", userImg);
-/*
-        List<Categorie> categories = categorieManager.getCategorieById(List.of(1,2,10));
-        model.addAttribute("Categ",categories);
-        */
+
 
         return "Home";
         }
-
-    @GetMapping("/settings")
-    public String setting(Model model) {
-
-        List<UserM> users = userManager.getAllUsers();
-        model.addAttribute("professorsCount", professorManager.getProfessorsCount());
-        model.addAttribute("studentsCount", studentManager.getStudentsCount());
-        model.addAttribute("coursesCount",courseManager.getCoursesCount());
-        model.addAttribute("user",userManager.getAllUsers());
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        UserM user = userManager.findByLogin(username);
-        Integer userId = user.getId();
-        String userImg = user.getImgP();
-
-        model.addAttribute("username", username);
-        model.addAttribute("userImg", userImg);
-
-
-        return "settings";
-    }
-
-
-
-
 
 }

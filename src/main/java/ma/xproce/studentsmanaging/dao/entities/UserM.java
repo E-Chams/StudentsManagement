@@ -21,6 +21,7 @@ public class UserM {
     private String password;
     private String fname;
     private String lname;
+    private String email;
     private Date createdAt;
     private  Date updatedAt;
     @Enumerated(EnumType.ORDINAL)

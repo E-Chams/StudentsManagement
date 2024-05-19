@@ -24,6 +24,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(request -> request.requestMatchers("/", "/static/*", "/registration", "/login").permitAll()
                         .requestMatchers("/addCourse","updateCourse" ,"addStudent","updateStudent","addProfessor","updateProfessor","index").hasRole("ADMIN")
+                        .requestMatchers("/settings/edit", "/settings/update").authenticated()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login")
                         .defaultSuccessUrl("/Home", true)
