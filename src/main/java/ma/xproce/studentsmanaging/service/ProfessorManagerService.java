@@ -63,6 +63,9 @@ public class ProfessorManagerService implements ProfessorManager{
         return  professorRepository.findByLnameContaining(keyword,pageable);
 
     }
-
+    @Override
+    public Integer getProfessorsCount() {
+        return Math.toIntExact(professorRepository.count());
+    }
 
 }

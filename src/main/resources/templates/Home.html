@@ -16,7 +16,7 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="Home">
+                <a href="Home.html">
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="Home">
+                <a href="Home.html">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -61,7 +61,7 @@
             </li>
 
             <li>
-                <a href="settings.html">
+                <a href="#">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -88,14 +88,10 @@
             </div>
 
             <div class="search">
-                <form method="get" th:action="@{'/getStudentsList'}">
-
                 <label>
-                    <input type="text" placeholder="Search here" name="keyword" th:value="${keyword}">
+                    <input type="text" placeholder="Search here">
                     <ion-icon name="search-outline"></ion-icon>
                 </label>
-
-                </form>
             </div>
 
 
@@ -105,61 +101,130 @@
             </div>
         </div>
 
+        <!-- ======================= Cards ================== -->
+        <div class="cardBox">
+            <div class="card">
+                <div>
+                    <div class="numbers" th:text="${studentsCount}"></div>
+                    <div class="cardName">Total of students</div>
+                </div>
 
+                <div class="iconBx">
+                    <ion-icon name="people-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers" th:text="${professorsCount}"></div>
+                    <div class="cardName">Total of professors</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="people-outline"></ion-icon>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="numbers" th:text="${coursesCount}"></div>
+                    <div class="cardName">Total of courses</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="list-outline"></ion-icon>
+                </div>
+            </div>
+
+
+        </div>
 
         <!-- ================ Order Details List ================= -->
         <div class="details">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Students List</h2>
-                </div>
-                <form method="get" th:action="@{'/getStudentsList'}">
-                    <table>
-                        <thead>
-                        <tr>
-                            <td>Image</td>
-                            <td>First name</td>
-                            <td>Last name</td>
-                            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Action</td>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr th:each="student:${listStudent}">
-                            <td width="60px"><div class="imgBx">
-                                <img th:src="'data:image/jpeg;base64,' + ${student.imgP}" alt="StudentImage">
-                            </div></td>
-                            <td th:text="${student.fname}"></td>
-                            <td th:text="${student.lname}"></td>
-                            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-                                <span class="status delivered" ><a th:href="@{'updateStudent/'+${student.id}}">update</a></span>
-                                <span class="status return" ><a th:href="@{'deleteStudent/'+${student.id}}">delete</a></span>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </form>
-
-                <div class="container pagination-container">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item" th:each="p, stat : ${pages}">
-                            <a th:class="${stat.index} == ${currentPage} ? 'active' : ''"
-                               th:text="${stat.index + 1}"
-                               th:href="@{/getStudentsList(page=${stat.index}, keyword=${keyword})}"></a>
-                        </li>
-                    </ul>
+                    <h2>Recent Orders</h2>
+                    <a href="#" class="btn">View All</a>
                 </div>
 
+                <table>
+                    <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Payment</td>
+                        <td>Status</td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Star Refrigerator</td>
+                        <td>$1200</td>
+                        <td>Paid</td>
+                        <td><span class="status delivered">Delivered</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Dell Laptop</td>
+                        <td>$110</td>
+                        <td>Due</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Apple Watch</td>
+                        <td>$1200</td>
+                        <td>Paid</td>
+                        <td><span class="status return">Return</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Addidas Shoes</td>
+                        <td>$620</td>
+                        <td>Due</td>
+                        <td><span class="status inProgress">In Progress</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Star Refrigerator</td>
+                        <td>$1200</td>
+                        <td>Paid</td>
+                        <td><span class="status delivered">Delivered</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Dell Laptop</td>
+                        <td>$110</td>
+                        <td>Due</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Apple Watch</td>
+                        <td>$1200</td>
+                        <td>Paid</td>
+                        <td><span class="status return">Return</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Addidas Shoes</td>
+                        <td>$620</td>
+                        <td>Due</td>
+                        <td><span class="status inProgress">In Progress</span></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
+            <!-- ================= New Customers ================ -->
             <div class="recentCustomers">
                 <div class="cardHeader">
                     <h2>Recently added students</h2>
                 </div>
 
                 <table>
-                    <tr th:each="student:${listStudent}">
+                    <tr th:each="student:${Students}">
                         <td width="60px" >
                             <div class="imgBx"><img th:src="'data:image/jpeg;base64,' + ${student.imgP}" alt="StudentImage"></div>
                         </td>
@@ -167,16 +232,14 @@
                             <h4 th:text="${student.fname}"></h4>
                         </td>
                         <td>
-                            <h4 th:text="${student.lname}"></h4>
+                        <h4 th:text="${student.lname}"></h4>
                         </td>
                     </tr>
 
 
                 </table>
             </div>
-
         </div>
-
     </div>
 </div>
 

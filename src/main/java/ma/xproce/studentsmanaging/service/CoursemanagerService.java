@@ -93,5 +93,8 @@ public class CoursemanagerService implements CourseManager {
         return  courseRepository.findByNameContaining(keyword,pageable);
 
     }
-
+    @Override
+    public Integer getCoursesCount() {
+        return Math.toIntExact(courseRepository.count());
+    }
 }

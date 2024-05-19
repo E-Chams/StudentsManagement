@@ -3,22 +3,30 @@ package ma.xproce.studentsmanaging.web;
 import ma.xproce.studentsmanaging.dao.entities.ClassSession;
 import ma.xproce.studentsmanaging.dao.entities.Course;
 import ma.xproce.studentsmanaging.dao.entities.Student;
+import ma.xproce.studentsmanaging.dao.entities.UserM;
 import ma.xproce.studentsmanaging.dao.repositories.ClassSessionRepository;
 import ma.xproce.studentsmanaging.service.ClassSessionManager;
 import ma.xproce.studentsmanaging.service.CourseManager;
 import ma.xproce.studentsmanaging.service.StudentManager;
+import ma.xproce.studentsmanaging.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.plaf.synth.SynthTextAreaUI;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -31,6 +39,8 @@ public class StudentController {
     private ClassSessionManager classSessionManager;
     @Autowired
     private ClassSessionRepository classSessionRepository;
+    @Autowired
+    private UserManager userManager;
 
     @GetMapping("/getStudentsList")
     public String getAllStudents(Model model,
@@ -71,22 +81,39 @@ public class StudentController {
 
 
 
-
-
     @GetMapping("/updateStudent/{id}")
     public String showUpdateForm(@PathVariable Integer id, Model model) {
         Student student = studentManager.getStudentById(id);
         model.addAttribute("student", student);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
         return "updateStudent";
     }
 
     @PostMapping("/updateStudent")
-    public String updateStudent(@RequestParam(name = "studentId") Integer id,
+    public String updateStudent(@RequestParam("file") MultipartFile file,
+                                @RequestParam(name = "studentId") Integer id,
                                 @RequestParam String fname, @RequestParam String lname) {
         Student student = studentManager.getStudentById(id);
         if (student != null) {
             student.setFname(fname);
             student.setLname(lname);
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            if (fileName.contains("..")) {
+                System.out.println("not a a valid file");
+            }
+            try {
+                student.setImgP(Base64.getEncoder().encodeToString(file.getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
             studentManager.updateStudent(student);
         }
         return "redirect:/getStudentsList";
@@ -128,7 +155,8 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public String addStudent(@RequestParam("fname") String firstName,
+    public String addStudent(@RequestParam("file") MultipartFile file
+            , @RequestParam("fname") String firstName,
                              @RequestParam("lname") String lastName,
                              @RequestParam("courses") List<Integer> courseIds) {
 
@@ -136,6 +164,16 @@ public class StudentController {
         Student student = new Student();
         student.setFname(firstName);
         student.setLname(lastName);
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if (fileName.contains("..")) {
+            System.out.println("not a a valid file");
+        }
+        try {
+            student.setImgP(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
 
         List<Course> selectedCourses = courseManager.getCoursesByIds(courseIds);
         //System.out.println(courseIds);

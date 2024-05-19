@@ -33,10 +33,11 @@ public class UserService {
         }
     }
 
-    public void register(UserM user) {
+    public int register(UserM user) {
         user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+        return user.getId();
     }
 
     public UserM findByLogin(String login) {

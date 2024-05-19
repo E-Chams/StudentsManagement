@@ -22,11 +22,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(request -> request.requestMatchers("/", "/styles/*", "/registration", "/login").permitAll()
-                        .requestMatchers("/addCourse","updateCourse" ,"addStudent","updateStudent","addProfessor","updateProfessor").hasRole("ADMIN")
+        http.authorizeHttpRequests(request -> request.requestMatchers("/", "/static/*", "/registration", "/login").permitAll()
+                        .requestMatchers("/addCourse","updateCourse" ,"addStudent","updateStudent","addProfessor","updateProfessor","index").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login")
-                        .defaultSuccessUrl("/getStudentsList", true)
+                        .defaultSuccessUrl("/Home", true)
                         .permitAll())
                 .logout(LogoutConfigurer::permitAll);
         return http.build();

@@ -9,7 +9,6 @@ import ma.xproce.studentsmanaging.dao.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -57,8 +56,26 @@ public class StudentManagerService implements StudentManager{
         PageRequest pageable = PageRequest.of(page, taille);
         return studentRepository.findAll(pageable);
     }
-
     @Override
+    public List<Student> getallStudents() {
+        return studentRepository.findAll();}
+    /*@Override
+    public List<Student> getStudentsById(List<Integer> students) {
+        List<Student> students1 = new ArrayList<>();
+        for (Integer id : students)
+        {
+            Student S = this.findById(id);
+            if (S != null) {
+                students1.add(S);
+            }
+        }
+        return students1;
+    }*/
+
+
+
+
+        @Override
     public Student getStudentById(int id){
         return studentRepository.findById(id).orElse(null);
     }
@@ -94,6 +111,9 @@ public class StudentManagerService implements StudentManager{
         PageRequest pageable = PageRequest.of(page, taille);
         return studentRepository.findByFnameContainingOrLnameContains(keyword,keyword,pageable);
     }
-
+    @Override
+    public Integer getStudentsCount() {
+        return Math.toIntExact(studentRepository.count());
+    }
 
 }

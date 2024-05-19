@@ -23,6 +23,9 @@ public class Student {
     private String lname;
     private Date createdAt;
     private  Date updatedAt;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String imgP;
 
 
     @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER ,cascade = CascadeType.MERGE)

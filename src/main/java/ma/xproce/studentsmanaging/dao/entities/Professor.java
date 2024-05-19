@@ -21,6 +21,9 @@ public class Professor {
     private String lname;
     private Date createdAt;
     private  Date updatedAt;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String imgP;
 
 
     @OneToOne(mappedBy = "professor", cascade = CascadeType.MERGE, orphanRemoval = true)

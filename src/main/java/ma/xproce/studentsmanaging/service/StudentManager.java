@@ -13,11 +13,16 @@ public interface StudentManager {
     public void deleteStudent(int id);
 
     public Page<Student> getAllStudents(int page , int taille);
+    //public Student  getSomeStudents()
+
     public Student getStudentById(int id);
 
     public Student updateStudent(Student student);
     public List<Course> getCoursesForStudent(int id);
     Page<Student> searchStudent(String keyword, int page , int taille);
+    public List<Student> getallStudents();
+    //public List<Student> getStudentsById(List<Integer> students);
+    public Integer getStudentsCount();
 
 
 }

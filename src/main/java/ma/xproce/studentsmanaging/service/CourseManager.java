@@ -19,4 +19,6 @@ public interface CourseManager {
     public List<Course> getCoursesByIds(List<Integer> courseIds);
     public Course updateCourse(Course course);
     public Page<Course> searchCourse(String keyword, int page , int taille);
+
+    public Integer getCoursesCount();
 }
