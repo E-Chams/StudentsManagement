@@ -1,84 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/calendar.css">
 </head>
 
 <body>
-<!-- =============== Navigation ================ -->
+<section layout:fragment="content">
 <div class="container">
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="Home">
-                        <span class="icon">
-                            <ion-icon name="logo-apple"></ion-icon>
-                        </span>
-                    <span class="title">Brand Name</span>
-                </a>
-            </li>
 
-            <li>
-                <a href="Home">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="getStudentsList">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Students</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="getProfessorsList">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Professors</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="getCoursesList">
-                        <span class="icon">
-                            <ion-icon name="list-outline"></ion-icon>
-                        </span>
-                    <span class="title">Courses</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="settings">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                    <span class="title">Settings</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/login">
-                    <span class="icon">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                     </span>
-                    <span class="title">Sign Out</span>
-                </a>
-            </li>
-        </ul>
-    </div>
 
     <!-- ========================= Main ==================== -->
     <div class="main">
@@ -148,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="card" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <div class="card"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                         <div>
                             <div class="cardName">Add new professor here . !</div>
                         </div>
@@ -174,79 +107,46 @@
         <!-- ================ Order Details List ================= -->
         <div class="details">
             <div class="recentOrders">
-                <div class="cardHeader">
-                    <h2>Recent Orders</h2>
-                    <a href="#" class="btn">View All</a>
+                <div class="contianer">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <span class="month-picker" id="month-picker"> May </span>
+                            <div class="year-picker" id="year-picker">
+            <span class="year-change" id="pre-year">
+              <pre><</pre>
+            </span>
+                                <span id="year">2020 </span>
+                                <span class="year-change" id="next-year">
+              <pre>></pre>
+            </span>
+                            </div>
+                        </div>
+
+                        <div class="calendar-body">
+                            <div class="calendar-week-days">
+                                <div>Sun</div>
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                            </div>
+                            <div class="calendar-days">
+                            </div>
+                        </div>
+                        <div class="calendar-footer">
+                        </div>
+                        <div class="date-time-formate">
+                            <div class="day-text-formate">TODAY</div>
+                            <div class="date-time-value">
+                                <div class="time-formate">02:51:20</div>
+                                <div class="date-formate">23 - july - 2022</div>
+                            </div>
+                        </div>
+                        <div class="month-list"></div>
+                    </div>
                 </div>
-
-                <table>
-                    <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Price</td>
-                        <td>Payment</td>
-                        <td>Status</td>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr>
-                        <td>Star Refrigerator</td>
-                        <td>$1200</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Delivered</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Dell Laptop</td>
-                        <td>$110</td>
-                        <td>Due</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Apple Watch</td>
-                        <td>$1200</td>
-                        <td>Paid</td>
-                        <td><span class="status return">Return</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Addidas Shoes</td>
-                        <td>$620</td>
-                        <td>Due</td>
-                        <td><span class="status inProgress">In Progress</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Star Refrigerator</td>
-                        <td>$1200</td>
-                        <td>Paid</td>
-                        <td><span class="status delivered">Delivered</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Dell Laptop</td>
-                        <td>$110</td>
-                        <td>Due</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Apple Watch</td>
-                        <td>$1200</td>
-                        <td>Paid</td>
-                        <td><span class="status return">Return</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>Addidas Shoes</td>
-                        <td>$620</td>
-                        <td>Due</td>
-                        <td><span class="status inProgress">In Progress</span></td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
 
             <!-- ================= New Customers ================ -->
@@ -271,13 +171,9 @@
         </div>
     </div>
 </div>
-
 <!-- =========== Scripts =========  -->
-<script src="/js/main.js"></script>
-
-<!-- ====== ionicons ======= -->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/script.js" defer></script>
+</section>
 </body>
 
 </html>

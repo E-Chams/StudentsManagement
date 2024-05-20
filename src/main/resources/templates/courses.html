@@ -1,168 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.com"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Courses List</title>
 </head>
-
 <body class="course-page">
-<!-- =============== Navigation ================ -->
-<div class="container">
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="Home">
-                        <span class="icon">
-                            <ion-icon name="logo-apple"></ion-icon>
-                        </span>
-                    <span class="title">Brand Name</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="Home">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="getStudentsList">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Students</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="getProfessorsList">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                    <span class="title">Professors</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="getCoursesList">
-                        <span class="icon">
-                            <ion-icon name="list-outline"></ion-icon>
-                        </span>
-                    <span class="title">Courses</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="settings">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                    <span class="title">Settings</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                    <span class="title">Sign Out</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- ========================= Main ==================== -->
-    <div class="main">
-        <div class="topbar">
-            <div class="toggle">
-                <ion-icon name="menu-outline"></ion-icon>
-            </div>
-
-            <div class="search">
-                <form method="get" th:action="@{'/getStudentsList'}">
-
-                    <label>
-                        <input type="text" placeholder="Search here" name="keyword" th:value="${keyword}">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
-
-                </form>
-            </div>
+<section layout:fragment="content">
+    <div class="container">
 
 
-            <h5 th:text="'Welcome back ! '+${username}"></h5>
-            <div class="user">
-                <img th:src="'data:image/jpeg;base64,' + ${userImg}" alt="StudentImage">
-            </div>
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+                    <div class="topbar">
+                                <div class="toggle">
+                                    <ion-icon name="menu-outline"></ion-icon>
+                                </div>
+
+                                <div class="search">
+                                    <form method="get" th:action="@{'/getStudentsList'}">
+
+                                        <label>
+                                            <input type="text" placeholder="Search here" name="keyword" th:value="${keyword}">
+                                            <ion-icon name="search-outline"></ion-icon>
+                                        </label>
+
+                                    </form>
+                                </div>
+
+
+                                    <h5 th:text="'Welcome back ! '+${username}"></h5>
+                                    <div class="user">
+                                        <img th:src="'data:image/jpeg;base64,' + ${userImg}" alt="StudentImage">
+                                    </div>
+                    </div>
+
+
+
+            <!-- ================ Order Details List ================= -->
+                    <div class="details full-width-div">
+                        <div class="recentOrders">
+                                            <div class="cardHeader">
+                                                <h2>Course's List</h2>
+                                            </div>
+                                        <form method="get" th:action="@{'/getCoursesList'}">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <td>Course name</td>
+                                                    <td>Associated professor</td>
+                                                    <td>Course date</td>
+                                                    <td>Course start hour</td>
+                                                    <td>Course end hour</td>
+                                                    <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Action</td>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                <tr th:each="course:${listCourses}">
+                                                    <td th:text="${course.getName()}"></td>
+                                                    <td th:text="${course.getProfessor().getLname()}"></td>
+                                                    <td th:text="${course.getClassSessions().get(0).getDate()}"></td>
+                                                    <td th:text="${course.getClassSessions().get(0).getStart()}"></td>
+                                                    <td th:text="${course.getClassSessions().get(0).getEnd()}"></td>
+                                                    <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                                                        <span class="status delivered" ><a th:href="@{'updateCourse/'+${course.id}}">update</a></span>
+                                                        <span class="status return" ><a th:href="@{'deleteCourse/'+${course.id}}">delete</a></span>
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </form>
+
+                                    <div class="container pagination-container">
+                                        <ul class="nav nav-pills">
+                                            <li class="nav-item" th:each="p, stat : ${pages}">
+                                                <a th:class="${stat.index} == ${currentPage} ? 'active' : ''"
+                                                   th:text="${stat.index + 1}"
+                                                   th:href="@{/getCoursesList(page=${stat.index}, keyword=${keyword})}"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                        </div>
+
+                    </div>
         </div>
-
-
-
-        <!-- ================ Order Details List ================= -->
-        <div class="details full-width-div">
-            <div class="recentOrders">
-                <div class="cardHeader">
-                    <h2>Course's List</h2>
-                </div>
-                <form method="get" th:action="@{'/getCoursesList'}">
-                    <table>
-                        <thead>
-                        <tr>
-                            <td>Course name</td>
-                            <td>Associated professor</td>
-                            <td>Course date</td>
-                            <td>Course start hour</td>
-                            <td>Course end hour</td>
-                            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Action</td>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr th:each="course:${listCourses}">
-                            <td th:text="${course.getName()}"></td>
-                            <td th:text="${course.getProfessor().getLname()}"></td>
-                            <td th:text="${course.getClassSessions().get(0).getDate()}"></td>
-                            <td th:text="${course.getClassSessions().get(0).getStart()}"></td>
-                            <td th:text="${course.getClassSessions().get(0).getEnd()}"></td>
-                            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-                                <span class="status delivered" ><a th:href="@{'updateCourse/'+${course.id}}">update</a></span>
-                                <span class="status return" ><a th:href="@{'deleteCourse/'+${course.id}}">delete</a></span>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </form>
-
-                <div class="container pagination-container">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item" th:each="p, stat : ${pages}">
-                            <a th:class="${stat.index} == ${currentPage} ? 'active' : ''"
-                               th:text="${stat.index + 1}"
-                               th:href="@{/getCoursesList(page=${stat.index}, keyword=${keyword})}"></a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-</div>
-
-<!-- =========== Scripts =========  -->
-<script src="/js/main.js"></script>
-
-<!-- ====== ionicons ======= -->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </div>
+</section>
 </body>
 
 </html>

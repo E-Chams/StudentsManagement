@@ -495,6 +495,25 @@ body {
     font-weight: 500;
 }
 
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+option:hover {
+    background-color: #007bff; /* Blue color on hover */
+    color: white;
+}
+
+option:checked {
+    background-color: #007bff; /* Blue color for selected options */
+    color: white;
+}
+
 .status.delivered {
     background: #8de02c;
     color: var(--white);
