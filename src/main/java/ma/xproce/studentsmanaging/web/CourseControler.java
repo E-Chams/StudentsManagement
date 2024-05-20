@@ -3,11 +3,15 @@ package ma.xproce.studentsmanaging.web;
 import ma.xproce.studentsmanaging.dao.entities.ClassSession;
 import ma.xproce.studentsmanaging.dao.entities.Course;
 import ma.xproce.studentsmanaging.dao.entities.Professor;
+import ma.xproce.studentsmanaging.dao.entities.UserM;
 import ma.xproce.studentsmanaging.service.ClassSessionManager;
 import ma.xproce.studentsmanaging.service.CourseManager;
 import ma.xproce.studentsmanaging.service.ProfessorManager;
+import ma.xproce.studentsmanaging.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +30,8 @@ public class CourseControler {
     private ClassSessionManager classSessionManager;
     @Autowired
     private ProfessorManager professorManager;
+    @Autowired
+    private UserManager userManager;
     @GetMapping("/getCoursesList")
     public String getAllCourses(Model model, @RequestParam(name = "page",defaultValue = "0") int page,
                                    @RequestParam(name = "taille" ,defaultValue = "5") int taille,
@@ -37,6 +43,14 @@ public class CourseControler {
         } else {
             courses = courseManager.getAllCourses(page, taille);
         }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
         model.addAttribute("listCourses", courses.getContent());
         int[] pages = new int[courses.getTotalPages()];
         model.addAttribute("pages" , pages);
@@ -47,6 +61,14 @@ public class CourseControler {
     }
     @GetMapping("/updateCourse/{id}")
     public String showUpdateForm(@PathVariable Integer id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
         Course course = courseManager.getCourseById(id);
         model.addAttribute("course", course);
         return "updateCourse";
@@ -74,6 +96,14 @@ public class CourseControler {
     }
     @GetMapping("/addCourse")
     public String showAddCourseForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
         return "addCourse";
     }
     @PostMapping("/addCourse")

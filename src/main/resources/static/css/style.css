@@ -92,6 +92,8 @@ body {
     font-size: 1.75rem;
 }
 
+
+
 .navigation ul li a .title {
     position: relative;
     display: block;
@@ -217,7 +219,7 @@ body {
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
 }
 
@@ -272,6 +274,14 @@ body {
 
 
 .course-page .full-width-div {
+    width: 100%;
+    display: block;
+}
+.add-student .full-width-div {
+    width: 100%;
+    display: block;
+}
+.add-course .full-width-div {
     width: 100%;
     display: block;
 }

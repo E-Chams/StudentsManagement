@@ -55,6 +55,14 @@ public class StudentController {
         } else {
             students = studentManager.getAllStudents(page, taille);
         }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
 
         model.addAttribute("listStudent", students.getContent());
         int[] pages = new int[students.getTotalPages()];
@@ -149,6 +157,14 @@ public class StudentController {
 
     @GetMapping("/addStudent")
     public String showAddStudentForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
         List<Course> courses = courseManager.getAllCourses();
         model.addAttribute("courses", courses);
         return "addStudent";
@@ -156,7 +172,7 @@ public class StudentController {
 
     @PostMapping("/addStudent")
     public String addStudent(@RequestParam("file") MultipartFile file
-            , @RequestParam("fname") String firstName,
+                            , @RequestParam("fname") String firstName,
                              @RequestParam("lname") String lastName,
                              @RequestParam("courses") List<Integer> courseIds) {
 
@@ -190,7 +206,7 @@ public class StudentController {
 
         studentManager.addStudent(student);
 
-        return "redirect:/getStudentsList";
+        return "redirect:/getStudentsList?success";
     }
 
 

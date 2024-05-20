@@ -61,7 +61,7 @@
             </li>
 
             <li>
-                <a href="settings.html">
+                <a href="settings">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -131,7 +131,6 @@
                                 <img th:src="'data:image/jpeg;base64,' + ${professor.imgP}" alt="ProfessorImage">
                             </div></td>
                             <td th:text="${professor.getFname()}"></td>
-                            <td th:text="${professor.getLname()}"></td>
                             <td th:text="${professor.getLname()}"></td>
                             <td th:text="${professor.getCourse().getName()}"></td>
                             <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">

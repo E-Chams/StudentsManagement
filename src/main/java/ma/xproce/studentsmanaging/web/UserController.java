@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Date;
 
 @Controller
 @RequiredArgsConstructor
@@ -89,9 +90,9 @@ public class UserController {
     public String updateSettings(Model model,
                                  @ModelAttribute UserM user, RedirectAttributes redirectAttributes,
                                  @RequestParam String lname,
-                                 @RequestParam String password,
                                  @RequestParam String fname,
-                                 @RequestParam String email) {
+                                 @RequestParam String email,
+                                 @RequestParam("file") MultipartFile file) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String usrname = authentication.getName();
         UserM userr = userManager.findByLogin(usrname);
@@ -100,11 +101,20 @@ public class UserController {
         userr.setEmail(email);
         userr.setFname(fname);
         userr.setLname(lname);
+        userr.setUpdatedAt(new Date());
         userRepository.save(userr);
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if (fileName.contains("..")) {
+            System.out.println("not a a valid file");
+        }
+        try {
+            userr.setImgP(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
 
-        UserM admin = userManager.findByLogin("NewUser");
-        admin.setPassword(passwordEncoder.encode("abc"));
-        userRepository.save(user);
+        }
+
+
 
 
 
@@ -114,7 +124,19 @@ public class UserController {
         redirectAttributes.addFlashAttribute("successMessage", "Settings updated successfully.");
         return "redirect:/settings";
     }
-
+@GetMapping("profile")
+public String showProfile(Model model) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String username = authentication.getName();
+    UserM user = userManager.findByLogin(username);
+    Integer userId = user.getId();
+    String userImg = user.getImgP();
+    model.addAttribute("username", username);
+    model.addAttribute("userImg", userImg);
+    model.addAttribute("userId",userId);
+    model.addAttribute("usr",user);
+    return "profile";
+}
 
 
 }
