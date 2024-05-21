@@ -39,10 +39,6 @@
                     <input type="hidden" name="professorId" th:value="${professor.getId()}">
 
                     <div class="form-group">
-                        <label class="col-form-label">Image <span class="text-danger">*</span></label>
-                        <input class="form-control" type="file" name="file" id="customFile" for="customFile"/>
-                    </div>
-                    <div class="form-group">
                         <label>Professor's first name</label>
                         <input type="text" class="form-control" name="fname" th:value="${professor.getFname()}">
                     </div>
@@ -50,6 +46,10 @@
                     <div class="form-group">
                         <label>Professor's last name</label>
                         <input type="text" class="form-control" name="lname" th:value="${professor.getLname()}">
+                    </div>
+                    <div class="form-group">
+                        <label>Professor's phone number</label>
+                        <input type="text" class="form-control" name="phone" th:value="${professor.getPhone}">
                     </div>
                     <!-- Display courses -->
                     <div class="form-group">

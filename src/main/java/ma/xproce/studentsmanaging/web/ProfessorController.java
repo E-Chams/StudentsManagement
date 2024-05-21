@@ -80,11 +80,13 @@ public class ProfessorController {
     @PostMapping("/addProfessor")
     public String addProfessor(@RequestParam("file") MultipartFile file, @RequestParam("fname") String firstName,
                                @RequestParam("lname") String lastName,
-                               @RequestParam("course") String coursename) {
+                               @RequestParam("course") String coursename,
+                               @RequestParam("phone") String phone) {
 
         Professor professor = new Professor();
         professor.setFname(firstName);
         professor.setLname(lastName);
+        professor.setPhone(phone);
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if (fileName.contains("..")) {
             System.out.println("not a a valid file");

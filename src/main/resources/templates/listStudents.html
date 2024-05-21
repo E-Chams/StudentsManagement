@@ -45,7 +45,7 @@
                             <td>Image</td>
                             <td>First name</td>
                             <td>Last name</td>
-                            <td>Phone</td>
+                            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Phone</td>
                             <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Action</td>
                         </tr>
                         </thead>
