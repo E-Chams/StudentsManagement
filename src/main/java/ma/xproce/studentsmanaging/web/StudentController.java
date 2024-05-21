@@ -70,6 +70,9 @@ public class StudentController {
         model.addAttribute("currentPage", page);
         model.addAttribute("keyword", keyword);
 
+        List<Student> latestStudents = studentManager.getLastThreeStudents();
+        model.addAttribute("latestStudents", latestStudents);
+
         return "listStudents";
     }
 

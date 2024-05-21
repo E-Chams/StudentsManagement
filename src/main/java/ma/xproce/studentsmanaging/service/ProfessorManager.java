@@ -18,4 +18,5 @@ public interface ProfessorManager {
     public  Professor getProfessorById(Integer id);
     public Page<Professor> searchProfessor(String keyword, int page , int taille);
     public Integer getProfessorsCount();
+    public List<Professor> getLastThreeProfessors();
 }

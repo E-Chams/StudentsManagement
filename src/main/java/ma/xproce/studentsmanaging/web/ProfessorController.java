@@ -43,11 +43,21 @@ public class ProfessorController {
         } else {
             professors = professorManager.getAllProfessors(page, taille);
         }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
         model.addAttribute("listProfessors", professors.getContent());
         int[] pages = new int[professors.getTotalPages()];
         model.addAttribute("pages" , pages);
         model.addAttribute("currentPage", page);
         model.addAttribute("keyword", keyword);
+
+        List<Professor> latestProfessors = professorManager.getLastThreeProfessors();
+        model.addAttribute("latestProfessors", latestProfessors);
 
         return "professors";
     }
@@ -55,6 +65,14 @@ public class ProfessorController {
     @GetMapping("/addProfessor")
     public String showAddProfessorForm(Model model) {
         List<Course> courses = courseManager.getAllCourses();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UserM user = userManager.findByLogin(username);
+        Integer userId = user.getId();
+        String userImg = user.getImgP();
+
+        model.addAttribute("username", username);
+        model.addAttribute("userImg", userImg);
         model.addAttribute("courses", courses);
         return "addProfessor";
     }

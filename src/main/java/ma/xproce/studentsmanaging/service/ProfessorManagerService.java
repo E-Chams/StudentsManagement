@@ -8,6 +8,7 @@ import ma.xproce.studentsmanaging.dao.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -66,6 +67,11 @@ public class ProfessorManagerService implements ProfessorManager{
     @Override
     public Integer getProfessorsCount() {
         return Math.toIntExact(professorRepository.count());
+    }
+    @Override
+    public List<Professor> getLastThreeProfessors() {
+        Pageable topThree = PageRequest.of(0, 4);
+        return professorRepository.findTop3ByOrderByIdDesc(topThree);
     }
 
 }

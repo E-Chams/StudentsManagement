@@ -9,6 +9,7 @@ import ma.xproce.studentsmanaging.dao.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -115,5 +116,11 @@ public class StudentManagerService implements StudentManager{
     public Integer getStudentsCount() {
         return Math.toIntExact(studentRepository.count());
     }
+
+    @Override
+    public List<Student> getLastThreeStudents() {
+        Pageable topThree = PageRequest.of(0, 6);
+        return studentRepository.findTop3ByOrderByIdDesc(topThree);
+       }
 
 }

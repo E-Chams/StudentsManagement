@@ -1,10 +1,23 @@
+:root {
+    --dark-text: #f8fbff;
+    --light-body: #f3f8fe;
+    --light-main: #fdfdfd;
+    --light-second: #c3c2c8;
+    --light-hover: #f0f0f0;
+    --light-text: #151426;
+    --light-btn: #9796f0;
+    --white: #fff;
+    --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --font-family: consolas;
+}
 .calendar {
-    height: 610px;
-    width: max-content;
+    width: 100%; /* Set width to 100% */
+    margin: 0 auto; /* Center the calendar horizontally */
+    height: auto;
     background-color: white;
     border-radius: 25px;
     overflow: hidden;
-    padding: 30px 50px 0px 50px;
+    padding: 10px 50px 0 50px; /* Adjust top padding */
     box-shadow: var(--shadow);
 }
 
@@ -14,6 +27,7 @@
     justify-content: space-between;
     align-items: center;
     font-weight: 700;
+    border-radius: 25px;
     color: var(--white);
     padding: 10px;
 }

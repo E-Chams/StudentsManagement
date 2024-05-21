@@ -16,7 +16,7 @@
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
-                    <span class="title">Brand Name</span>
+                    <span class="title">Students Management System</span>
                 </a>
             </li>
 
@@ -116,6 +116,7 @@
                             <td>Image</td>
                             <td>First name</td>
                             <td>Last name</td>
+                            <td>Phone number</td>
                             <td>Course name</td>
                             <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Action</td>
                         </tr>
@@ -128,6 +129,7 @@
                             </div></td>
                             <td th:text="${professor.getFname()}"></td>
                             <td th:text="${professor.getLname()}"></td>
+                            <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:text="${professor.getPhone}"></td>
                             <td th:text="${professor.getCourse().getName()}"></td>
                             <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                                 <span class="status delivered" ><a th:href="@{'updateProfessor/'+${professor.id}}">update</a></span>
@@ -157,7 +159,7 @@
                 </div>
 
                 <table>
-                    <tr th:each="professor:${listProfessors}">
+                    <tr th:each="professor:${latestProfessors}">
                         <td width="60px" >
                             <div class="imgBx"><img th:src="'data:image/jpeg;base64,' + ${professor.imgP}" alt="StudentImage"></div>
                         </td>

@@ -49,6 +49,10 @@ public class HomeController {
         model.addAttribute("username", username);
         model.addAttribute("userImg", userImg);
 
+        List<Student> latestStudents = studentManager.getLastThreeStudents();
+        model.addAttribute("latestStudents", latestStudents);
+
+
 
         return "Home";
         }

@@ -23,6 +23,7 @@ public interface StudentManager {
     public List<Student> getallStudents();
     //public List<Student> getStudentsById(List<Integer> students);
     public Integer getStudentsCount();
+    public List<Student> getLastThreeStudents();
 
 
 }

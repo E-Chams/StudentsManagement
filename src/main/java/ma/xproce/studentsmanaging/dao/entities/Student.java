@@ -21,6 +21,7 @@ public class Student {
     private int id;
     private String fname;
     private String lname;
+    private String phone;
     private Date createdAt;
     private  Date updatedAt;
     @Lob
